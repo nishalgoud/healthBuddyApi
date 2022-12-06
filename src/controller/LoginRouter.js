@@ -12,4 +12,13 @@ router.post("/api/v1/login", async function (request, reply) {
   }
 });
 
+router.post("/api/v1/resetPassword", async function (request, reply) {
+  try {
+    const res = await LoginService.get().resetPassword(request.body);
+    reply.send(res);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 module.exports = router;

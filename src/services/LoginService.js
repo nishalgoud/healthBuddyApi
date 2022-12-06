@@ -27,7 +27,27 @@ class LoginService {
         code: res.recordsets[0][0].code,
         user,
         roles,
-        jwtToken
+        jwtToken,
+      };
+    } catch (error) {
+      return {
+        code: 0,
+        message: error.message,
+      };
+    }
+  }
+  async resetPassword(resetPasswordData) {
+    try {
+      const { email, password } = resetPasswordData;
+      const getConn = await Connection.get().getConnection();
+
+      const res = await getConn.query(
+        `exec reset_password_user '${email}','${password}'`
+      );
+
+      return {
+        code: res.recordsets[0][0].code,
+        message: res.recordsets[1][0].message,
       };
     } catch (error) {
       return {
