@@ -20,9 +20,7 @@ class LoginService {
       }
       const user = res.recordsets[1][0];
       const roles = res.recordsets[2];
-      const jwtToken = jwt.sign({ user, roles }, SECRET_KEY, {
-        expiresIn: "1h",
-      });
+      const jwtToken = jwt.sign({ user, roles }, SECRET_KEY);
       return {
         code: res.recordsets[0][0].code,
         user,

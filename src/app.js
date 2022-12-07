@@ -4,8 +4,10 @@ const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser')
 const cors = require("cors");
 
-const loginRouter = require("./controller/LoginRouter");
-const userRouter = require("./controller/UserRouter");
+const loginRouter = require("./routers/LoginRouter");
+const userRouter = require("./routers/UserRouter");
+const contactRouter = require("./routers/ContactRouter");
+const careersRouter = require("./routers/CareersRouter");
 
 
 const port = 4000;
@@ -25,6 +27,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(loginRouter);
 app.use(userRouter);
+app.use(contactRouter)
+app.use(careersRouter)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
