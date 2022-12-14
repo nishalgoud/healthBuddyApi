@@ -17,7 +17,7 @@ class UserService {
       } = userData;
 
       let getConn = await Connection.get().getConnection();
-      const sqlQuery = `exec create_user '${email}','${password}','${firstName}','${mobileNumber}'`;
+      let sqlQuery = `exec create_user '${email}','${password}','${firstName}','${mobileNumber}'`;
       if (lastName) {
         sqlQuery += `,${lastName}`;
       }
@@ -52,6 +52,7 @@ class UserService {
         user: res.recordsets[1][0],
       };
     } catch (error) {
+      console.log()
       return {
         code: 0,
         message: error.message,

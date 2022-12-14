@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser')
 const cors = require("cors");
+const fileUpload = require('express-fileupload');
 
 const loginRouter = require("./routers/LoginRouter");
 const userRouter = require("./routers/UserRouter");
@@ -24,6 +25,7 @@ app.use(
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload());
 
 app.use(loginRouter);
 app.use(userRouter);
